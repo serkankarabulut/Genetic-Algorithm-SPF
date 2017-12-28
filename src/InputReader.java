@@ -23,7 +23,6 @@ public class InputReader {
             while((line=in.readLine())!= null){
                 String temp[] = line.split(" ");
                 this.adjMatrix[Integer.parseInt(temp[0])][Integer.parseInt(temp[1])] = Integer.parseInt(temp[2]);
-                //this.adjMatrix[Integer.parseInt(temp[1])][Integer.parseInt(temp[0])] = Integer.parseInt(temp[2]);
             }
         } catch ( IOException ex) {
             Logger.getLogger(InputReader.class.getName()).log(Level.SEVERE, null, ex);

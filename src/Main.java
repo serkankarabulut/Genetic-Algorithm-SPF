@@ -5,9 +5,9 @@ public class Main {
                 System.out.println(i+1 + "th turn");
                 long startTime = System.currentTimeMillis();
                 GeneticAlgorithm myPool = new GeneticAlgorithm(0, 9);
-                myPool.populate(5000);
-                myPool.crossover(1000);
+                myPool.populate(4000);
                 myPool.filterSolutionPath();
+                myPool.crossover(3000);
                 myPool.printTopResult();
                 long endTime = System.currentTimeMillis();
                 System.out.println("That took " + (endTime - startTime) + " milliseconds");

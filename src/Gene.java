@@ -15,5 +15,4 @@ public class Gene {
     public void setTo(int toVal){ this.to = toVal;}
     public void setFrom(int fromVal){ this.from = fromVal;}
     public void setWeight(int weightVal){ this.weight = weightVal;}
-
 }

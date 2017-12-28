@@ -11,5 +11,12 @@ public class Chromosome {
 
     public int getSize(){   return this.paths.size();}
 
+    public int getFitness(){
+        int fitness=0;
+        for(int i=0; i<this.getSize(); i++){
+            fitness+=this.getGene(i).getWeight();
+        }
+        return fitness;
+    }
 
 }
