@@ -9,15 +9,13 @@ public class InputReader {
     private int numberofNodes;
     private int maxNode;
 
-    public InputReader(){
+    public InputReader(int numberofNodes){
         try {
             BufferedReader in = new BufferedReader(new FileReader("input.txt"));
 
             String line;
-            line = in.readLine();
-            String elements[] = line.split(" ");
-            this.numberofNodes = Integer.parseInt(elements[1]) + 1;
-            this.maxNode = 9;
+            this.numberofNodes=numberofNodes;
+            this.maxNode = numberofNodes-1;
             initializeMatrix();
 
             while((line=in.readLine())!= null){
@@ -41,10 +39,7 @@ public class InputReader {
             }
         }
     }
-
-    public boolean  isGeneExist(Gene g){
-        int from = g.getFrom();
-        int to = g.getTo();
+    public boolean isGeneExist(int from, int to){
         return this.adjMatrix[from][to] != Integer.MAX_VALUE;
     }
 

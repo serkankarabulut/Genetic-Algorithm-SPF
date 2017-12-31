@@ -12,7 +12,7 @@ public class Gene {
     public int getFrom(){return this.from;}
     public int getTo(){return this.to;}
     public int getWeight(){return this.weight;}
-    public void setTo(int toVal){ this.to = toVal;}
-    public void setFrom(int fromVal){ this.from = fromVal;}
-    public void setWeight(int weightVal){ this.weight = weightVal;}
+    public void printGene(){
+        System.out.println("From:" + this.from +" to:" + this.to);
+    }
 }
