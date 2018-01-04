@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
                 long startTime = System.currentTimeMillis();
-                GeneticAlgorithm myPool = new GeneticAlgorithm(0, 9, 10);
-                myPool.populate(100);
+                GeneticAlgorithm myPool = new GeneticAlgorithm(0, 3999, 4000);
+                myPool.populate(50);
                 myPool.crossover(100);
                 myPool.printTopResult();
                 long endTime = System.currentTimeMillis();

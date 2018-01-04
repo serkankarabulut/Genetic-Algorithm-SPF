@@ -11,7 +11,7 @@ public class InputReader {
 
     public InputReader(int numberofNodes){
         try {
-            BufferedReader in = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("n4000.txt"));
 
             String line;
             this.numberofNodes=numberofNodes;
@@ -28,9 +28,7 @@ public class InputReader {
     }
 
     public int getMaxNode(){ return this.maxNode;}
-    public int getNumberofNodes(){ return this.numberofNodes;}
     public int getWeight(int start, int end){ return this.adjMatrix[start][end];}
-
     private void initializeMatrix(){
         this.adjMatrix = new int[this.numberofNodes][this.numberofNodes];
         for(int i = 0; i < this.numberofNodes; i++){
@@ -42,7 +40,6 @@ public class InputReader {
     public boolean isGeneExist(int from, int to){
         return this.adjMatrix[from][to] != Integer.MAX_VALUE;
     }
-
     public void printMatrix(){
         for(int i = 0; i < this.numberofNodes; i++){
             for(int j = 0; j < this.numberofNodes; j++){

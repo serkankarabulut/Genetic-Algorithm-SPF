@@ -11,7 +11,6 @@ public class GeneticAlgorithm {
     private int goalNode;
     private double mutationRate;
     private int maxPathSize;
-    private final int maxPathTry=5;
 
                                          /*CONSTRUCTORS*/
 
@@ -31,7 +30,6 @@ public class GeneticAlgorithm {
         for(int i = 0; i < numberofPopulation; i++){
             createPath();
         }
-        //printPaths();
     }
     public void crossover(int numberofCrossover){
         for(int i = 0; i < numberofCrossover; i++){
@@ -89,26 +87,32 @@ public class GeneticAlgorithm {
         Chromosome path = new Chromosome();
         Random rand = new Random();
         int index1;
-        int index2 = rand.nextInt(this.maxPathSize);
-        while(!this.myInput.isGeneExist(this.startNode,index2)) {
-            index2 = rand.nextInt(this.maxPathSize);
-        }
+        ArrayList<Integer> myNeigbours;
+        int index2 = getNeigbours(this.startNode).get(rand.nextInt(getNeigbours(this.startNode).size()));
         int weight = this.myInput.getWeight(this.startNode,index2);
         Gene startGene = new Gene(this.startNode, index2, weight);
         path.addGene(startGene);
-        int counter=0;
-        while((path.getSize() <= this.maxPathSize) && ( path.getLastGene() != this.goalNode) && counter<this.maxPathTry){
-            index1 = path.getLastGene();
-            index2 = rand.nextInt(this.maxPathSize);
-            if(this.myInput.isGeneExist(index1, index2)){
+        index1 = path.getLastGene();
+        myNeigbours = getNeigbours(index1);
+        while(( path.getLastGene() != this.goalNode) && myNeigbours.size()>0){
+                index2 = myNeigbours.get(rand.nextInt(myNeigbours.size()));
                 weight = this.myInput.getWeight(index1,index2);
                 Gene myGene = new Gene(index1, index2, weight);
                 path.addGene(myGene);
-            }
-            counter++;
+                index1 = path.getLastGene();
+                myNeigbours = getNeigbours(index1);
         }
         if(path.getLastGene()==this.goalNode)
             this.solutionPath.add(path);
+    }
+    private ArrayList<Integer> getNeigbours(int g){
+        ArrayList<Integer> neigbours = new ArrayList<>();
+        for(int i=0; i<this.maxPathSize; i++){
+            if( this.myInput.getWeight(g,i)!=Integer.MAX_VALUE ){
+                neigbours.add(i);
+            }
+        }
+        return neigbours;
     }
     private int minSize(Chromosome c1, Chromosome c2){
         if(c1.getSize() > c2.getSize())
@@ -141,7 +145,7 @@ public class GeneticAlgorithm {
         comp = Comparator.comparingInt(Chromosome::getWeight);
         this.solutionPath.sort(comp);
     }
-    int findCrossoverPoint(Chromosome c, int g){
+    private int findCrossoverPoint(Chromosome c, int g){
         for(int i = 1; i<c.getSize()-1; i++){
             if(c.getGene(i) == g)
                 return i;
